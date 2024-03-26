@@ -1,5 +1,5 @@
 import React from "react";
-import Slider from "react-slick";
+import Slider from "@ant-design/react-slick";
 
 function AutoPlay() {
   const settings = {

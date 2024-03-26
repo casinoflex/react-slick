@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Slider from "react-slick";
+import Slider from "@ant-design/react-slick";
 
 function DynamicSlides() {
   const [slides, setSlides] = useState([1, 2, 3, 4, 5, 6]);

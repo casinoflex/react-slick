@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Slider from "react-slick";
+import Slider from "@ant-design/react-slick";
 
 function AutoPlayMethods() {
   let sliderRef = useRef(null);

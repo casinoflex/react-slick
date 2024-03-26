@@ -105,7 +105,7 @@
       "git add"
     ]
   },
-  "npmName": "react-slick",
+  "npmName": "@ant-design/react-slick",
   "npmFileMap": [
     {
       "basePath": "/dist/",

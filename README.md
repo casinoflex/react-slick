@@ -1,4 +1,4 @@
-### react-slick
+### @ant-design/react-slick
 
 [![Backers on Open Collective](https://opencollective.com/react-slick/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-slick/sponsors/badge.svg)](#sponsors)
 
@@ -11,13 +11,13 @@
 **npm**
 
 ```bash
-npm install react-slick --save
+npm install @ant-design/react-slick --save
 ```
 
 **yarn**
 
 ```bash
-yarn add react-slick
+yarn add @ant-design/react-slick
 ```
 
 **Also install slick-carousel for css and font**
@@ -52,7 +52,7 @@ or add cdn link in your html
 
 ```js
 import React from "react";
-import Slider from "react-slick";
+import Slider from "@ant-design/react-slick";
 
 export default function SimpleSlider() {
   var settings = {
@@ -100,7 +100,7 @@ For all available methods, go [here](https://react-slick.neostack.com/docs/api#m
 Want to run demos locally
 
 ```bash
-git clone https://github.com/akiran/react-slick
+git clone https://github.com/ant-design/react-slick
 cd react-slick
 npm install
 npm start

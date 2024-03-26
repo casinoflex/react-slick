@@ -29,7 +29,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
     alias: {
-      "react-slick": path.resolve(__dirname, "src/index.js")
+      "@ant-design/react-slick": path.resolve(__dirname, "src/index.js")
     }
   },
   plugins: [new webpack.IgnorePlugin(/vertx/)],

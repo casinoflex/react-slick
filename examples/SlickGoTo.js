@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import Slider from "react-slick";
+import Slider from "@ant-design/react-slick";
 import { baseUrl } from "./config";
 
 function SlickGoTo() {

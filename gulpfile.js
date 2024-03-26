@@ -9,13 +9,13 @@ var opn = require("opn");
 
 var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-const DEV_PORT = 8080;
+const DEV_PORT = process.env.DEV_PORT || 8080;
 
-gulp.task("clean", function() {
+gulp.task("clean", function () {
   return del(["./build/*"]);
 });
 
-gulp.task("copy", function() {
+gulp.task("copy", function () {
   gulp.src("./docs/index.html").pipe(gulp.dest("./build"));
   gulp.src("./docs/docs.css").pipe(gulp.dest("./build"));
   gulp.src("./docs/slick.css").pipe(gulp.dest("./build"));
@@ -31,7 +31,7 @@ gulp.task("copy", function() {
 
 gulp.task(
   "watch",
-  gulp.series(["copy"], function(done) {
+  gulp.series(["copy"], function (done) {
     gulp.watch(["./docs/index.html"], gulp.parallel(["copy"]));
     gulp.watch(["./docs/docs.css"], gulp.parallel(["copy"]));
     gulp.watch(["./docs/slick.css"], gulp.parallel(["copy"]));
@@ -42,7 +42,7 @@ gulp.task(
 
 gulp.task(
   "server",
-  gulp.series(["watch", "copy"], function() {
+  gulp.series(["watch", "copy"], function () {
     console.log("Start");
     var myConfig = require("./webpack.config");
     if (process.env.SINGLE_DEMO) {
@@ -64,7 +64,7 @@ gulp.task(
       stats: {
         colors: true
       }
-    }).listen(DEV_PORT, "0.0.0.0", function(err, result) {
+    }).listen(DEV_PORT, "0.0.0.0", function (err, result) {
       if (err) {
         console.log(err);
       } else {
@@ -77,22 +77,22 @@ gulp.task(
 );
 
 // gulp tasks for building dist files
-gulp.task("dist-clean", function() {
+gulp.task("dist-clean", function () {
   return del(["./dist/*"]);
 });
 
 var distConfig = require("./webpack.config.dist.js");
-gulp.task("dist-unmin", function(cb) {
+gulp.task("dist-unmin", function (cb) {
   var unminConfig = assign({}, distConfig);
   unminConfig.output.filename = "react-slick.js";
   unminConfig.mode = "none";
-  return webpack(unminConfig, function(err, stat) {
+  return webpack(unminConfig, function (err, stat) {
     console.error(err);
     cb();
   });
 });
 
-gulp.task("dist-min", function(cb) {
+gulp.task("dist-min", function (cb) {
   var minConfig = assign({}, distConfig);
   minConfig.output.filename = "react-slick.min.js";
   minConfig.plugins = minConfig.plugins.concat(
@@ -105,7 +105,7 @@ gulp.task("dist-min", function(cb) {
       }
     })
   );
-  return webpack(minConfig, function(err, stat) {
+  return webpack(minConfig, function (err, stat) {
     console.error(err);
     cb();
   });
@@ -113,7 +113,7 @@ gulp.task("dist-min", function(cb) {
 
 gulp.task(
   "dist",
-  gulp.series(["dist-clean", "dist-unmin", "dist-min"], function(done) {
+  gulp.series(["dist-clean", "dist-unmin", "dist-min"], function (done) {
     done();
   })
 );

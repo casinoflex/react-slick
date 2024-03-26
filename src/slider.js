@@ -4,7 +4,7 @@ import React from "react";
 import { InnerSlider } from "./inner-slider";
 import json2mq from "json2mq";
 import defaultProps from "./default-props";
-import { canUseDOM } from "./utils/innerSliderUtils";
+import { canUseDOM, filterSettings } from "./utils/innerSliderUtils";
 
 export default class Slider extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class Slider extends React.Component {
     this._responsiveMediaHandlers = [];
   }
 
-  innerSliderRefHandler = ref => (this.innerSlider = ref);
+  innerSliderRefHandler = (ref) => (this.innerSlider = ref);
 
   media(query, handler) {
     // javascript handler for  css media query
@@ -39,7 +39,7 @@ export default class Slider extends React.Component {
     //}
     if (this.props.responsive) {
       let breakpoints = this.props.responsive.map(
-        breakpt => breakpt.breakpoint
+        (breakpt) => breakpt.breakpoint
       );
       // sort them in increasing order of their numerical value
       breakpoints.sort((x, y) => x - y);
@@ -74,7 +74,7 @@ export default class Slider extends React.Component {
   }
 
   componentWillUnmount() {
-    this._responsiveMediaHandlers.forEach(function(obj) {
+    this._responsiveMediaHandlers.forEach(function (obj) {
       obj.mql.removeListener(obj.listener);
     });
   }
@@ -95,7 +95,7 @@ export default class Slider extends React.Component {
     var newProps;
     if (this.state.breakpoint) {
       newProps = this.props.responsive.filter(
-        resp => resp.breakpoint === this.state.breakpoint
+        (resp) => resp.breakpoint === this.state.breakpoint
       );
       settings =
         newProps[0].settings === "unslick"
@@ -141,7 +141,7 @@ export default class Slider extends React.Component {
 
     // Children may contain false or null, so we should filter them
     // children may also contain string filled with spaces (in certain cases where we use jsx strings)
-    children = children.filter(child => {
+    children = children.filter((child) => {
       if (typeof child === "string") {
         return !!child.trim();
       }
@@ -204,14 +204,17 @@ export default class Slider extends React.Component {
     if (settings === "unslick") {
       const className = "regular slider " + (this.props.className || "");
       return <div className={className}>{children}</div>;
-    } else if (newChildren.length <= settings.slidesToShow) {
+    } else if (
+      newChildren.length <= settings.slidesToShow &&
+      !settings.infinite
+    ) {
       settings.unslick = true;
     }
     return (
       <InnerSlider
         style={this.props.style}
         ref={this.innerSliderRefHandler}
-        {...settings}
+        {...filterSettings(settings)}
       >
         {newChildren}
       </InnerSlider>

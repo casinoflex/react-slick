@@ -6,9 +6,9 @@ var procCode = exec(
   "cp -r node_modules/slick-carousel/slick/fonts node_modules/slick-carousel/slick/ajax-loader.gif docs/"
 );
 
-const toString = obj => {
+const toString = (obj) => {
   let ret = "{\n";
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     if (
       obj[key].match("function") ||
       obj[key].match("React.createElement" || obj[key].match("\n"))
@@ -31,7 +31,7 @@ const toString = obj => {
 
 let bodyHTML = "";
 let bodyScript = "";
-Object.keys(exampleConfigs).forEach(key => {
+Object.keys(exampleConfigs).forEach((key) => {
   const props = exampleConfigs[key]["props"];
   const children = exampleConfigs[key]["children"];
   if (!props || !children) return;

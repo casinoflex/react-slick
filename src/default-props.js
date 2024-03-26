@@ -4,7 +4,7 @@ let defaultProps = {
   accessibility: true,
   adaptiveHeight: false,
   afterChange: null,
-  appendDots: dots => <ul style={{ display: "block" }}>{dots}</ul>,
+  appendDots: (dots) => <ul style={{ display: "block" }}>{dots}</ul>,
   arrows: true,
   autoplay: false,
   autoplaySpeed: 3000,
@@ -13,7 +13,7 @@ let defaultProps = {
   centerPadding: "50px",
   className: "",
   cssEase: "ease",
-  customPaging: i => <button>{i + 1}</button>,
+  customPaging: (i) => <button>{i + 1}</button>,
   dots: false,
   dotsClass: "slick-dots",
   draggable: true,
@@ -50,7 +50,8 @@ let defaultProps = {
   useTransform: true,
   variableWidth: false,
   vertical: false,
-  waitForAnimate: true
+  waitForAnimate: true,
+  asNavFor: null
 };
 
 export default defaultProps;

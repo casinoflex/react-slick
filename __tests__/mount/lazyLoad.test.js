@@ -26,7 +26,7 @@ const testsUtil = (settings, actions, keys) => {
   const jqDetails = getJQuerySlickDetails(settings, actions, keys);
   const reactDetails = getReactSlickDetails(settings, actions, keys);
   test.skip("checking current slide jQuery vs react", () => {
-    expect(reactDetails.currentSlide).toEqual(jqDetails.currentSlide);
+    expect(reactDetails.currentSlide).toEqual(parseInt(jqDetails.currentSlide));
   });
   test.skip("checking active slides jQuery vs react", () => {
     expect(reactDetails.activeSlides).toEqual(jqDetails.activeSlides);
@@ -34,13 +34,13 @@ const testsUtil = (settings, actions, keys) => {
 
   // Following two tests fail
   test("checking cloned slides jQuery vs react", () => {
-    expect(reactDetails.clonedSlides.map(slide => slide.index)).toEqual(
-      jqDetails.clonedSlides.map(slide => slide.index)
+    expect(reactDetails.clonedSlides.map((slide) => slide.index)).toEqual(
+      jqDetails.clonedSlides.map((slide) => slide.index)
     );
   });
   test("checking all slides jQuery vs react", () => {
-    expect(reactDetails.allSlides.map(slide => slide.index)).toEqual(
-      jqDetails.allSlides.map(slide => slide.index)
+    expect(reactDetails.allSlides.map((slide) => slide.index)).toEqual(
+      jqDetails.allSlides.map((slide) => slide.index)
     );
   });
 };

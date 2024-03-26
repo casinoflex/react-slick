@@ -10,12 +10,12 @@ if (fs.existsSync("./configs.json")) {
   configsObject = {};
 }
 
-const fetchExampleString = exampleName => {
+const fetchExampleString = (exampleName) => {
   const exampleString = fs.readFileSync(`examples/${exampleName}.js`, "utf-8");
   return exampleString;
 };
 
-const extractConfig = exampleString => {
+const extractConfig = (exampleString) => {
   const pattern = /(var|const)\s+settings\s*=\s*(\{(.|\n)+?\n\s*\};)/;
   let extraction = exampleString.match(pattern);
   if (extraction) extraction = extraction[2];
@@ -33,12 +33,12 @@ const extractConfig = exampleString => {
   return matchObject;
 };
 
-const extractChildren = exampleString => {
+const extractChildren = (exampleString) => {
   const pattern = /\<Slider(?:.|\n)*?\>((.|\n)*?)\<\/Slider\>/;
   return exampleString.match(pattern)[1];
 };
 
-const transpile = exampleString =>
+const transpile = (exampleString) =>
   babel.transform(exampleString, {
     plugins: [
       "transform-react-jsx",
@@ -79,7 +79,7 @@ const fetchExampleConfigs = (fileName, index) => {
 
 const exampleFiles = fs
   .readdirSync("examples")
-  .filter(file => file.endsWith(".js") && file[0] === file[0].toUpperCase())
+  .filter((file) => file.endsWith(".js") && file[0] === file[0].toUpperCase())
   .forEach((fileName, index) => fetchExampleConfigs(fileName, index));
 fs.writeFileSync(
   "examples/scripts/configs.json",

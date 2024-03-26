@@ -1,17 +1,18 @@
 import React from "react";
+import defaultProps from "../default-props";
 
 export function clamp(number, lowerBound, upperBound) {
   return Math.max(lowerBound, Math.min(number, upperBound));
 }
 
-export const safePreventDefault = event => {
+export const safePreventDefault = (event) => {
   const passiveEvents = ["onTouchStart", "onTouchMove", "onWheel"];
   if (!passiveEvents.includes(event._reactName)) {
     event.preventDefault();
   }
-}
+};
 
-export const getOnDemandLazySlides = spec => {
+export const getOnDemandLazySlides = (spec) => {
   let onDemandSlides = [];
   let startIndex = lazyStartIndex(spec);
   let endIndex = lazyEndIndex(spec);
@@ -24,7 +25,7 @@ export const getOnDemandLazySlides = spec => {
 };
 
 // return list of slides that need to be present
-export const getRequiredLazySlides = spec => {
+export const getRequiredLazySlides = (spec) => {
   let requiredSlides = [];
   let startIndex = lazyStartIndex(spec);
   let endIndex = lazyEndIndex(spec);
@@ -35,15 +36,16 @@ export const getRequiredLazySlides = spec => {
 };
 
 // startIndex that needs to be present
-export const lazyStartIndex = spec =>
+export const lazyStartIndex = (spec) =>
   spec.currentSlide - lazySlidesOnLeft(spec);
-export const lazyEndIndex = spec => spec.currentSlide + lazySlidesOnRight(spec);
-export const lazySlidesOnLeft = spec =>
+export const lazyEndIndex = (spec) =>
+  spec.currentSlide + lazySlidesOnRight(spec);
+export const lazySlidesOnLeft = (spec) =>
   spec.centerMode
     ? Math.floor(spec.slidesToShow / 2) +
       (parseInt(spec.centerPadding) > 0 ? 1 : 0)
     : 0;
-export const lazySlidesOnRight = spec =>
+export const lazySlidesOnRight = (spec) =>
   spec.centerMode
     ? Math.floor((spec.slidesToShow - 1) / 2) +
       1 +
@@ -51,8 +53,8 @@ export const lazySlidesOnRight = spec =>
     : spec.slidesToShow;
 
 // get width of an element
-export const getWidth = elem => (elem && elem.offsetWidth) || 0;
-export const getHeight = elem => (elem && elem.offsetHeight) || 0;
+export const getWidth = (elem) => (elem && elem.offsetWidth) || 0;
+export const getHeight = (elem) => (elem && elem.offsetHeight) || 0;
 export const getSwipeDirection = (touchObject, verticalSwiping = false) => {
   var xDist, yDist, r, swipeAngle;
   xDist = touchObject.startX - touchObject.curX;
@@ -83,7 +85,7 @@ export const getSwipeDirection = (touchObject, verticalSwiping = false) => {
 };
 
 // whether or not we can go next
-export const canGoNext = spec => {
+export const canGoNext = (spec) => {
   let canGo = true;
   if (!spec.infinite) {
     if (spec.centerMode && spec.currentSlide >= spec.slideCount - 1) {
@@ -101,12 +103,12 @@ export const canGoNext = spec => {
 // given an object and a list of keys, return new object with given keys
 export const extractObject = (spec, keys) => {
   let newObject = {};
-  keys.forEach(key => (newObject[key] = spec[key]));
+  keys.forEach((key) => (newObject[key] = spec[key]));
   return newObject;
 };
 
 // get initialized state
-export const initializedState = spec => {
+export const initializedState = (spec) => {
   // spec also contains listRef, trackRef
   let slideCount = React.Children.count(spec.children);
   const listNode = spec.listRef;
@@ -160,7 +162,7 @@ export const initializedState = spec => {
   return state;
 };
 
-export const slideHandler = spec => {
+export const slideHandler = (spec) => {
   const {
     waitForAnimate,
     animating,
@@ -386,9 +388,12 @@ export const swipeMove = (e, spec) => {
   let touchSwipeLength = touchObject.swipeLength;
   if (!infinite) {
     if (
-      (currentSlide === 0 && (swipeDirection === "right" || swipeDirection === "down")) ||
-      (currentSlide + 1 >= dotCount && (swipeDirection === "left" || swipeDirection === "up")) ||
-      (!canGoNext(spec) && (swipeDirection === "left" || swipeDirection === "up"))
+      (currentSlide === 0 &&
+        (swipeDirection === "right" || swipeDirection === "down")) ||
+      (currentSlide + 1 >= dotCount &&
+        (swipeDirection === "left" || swipeDirection === "up")) ||
+      (!canGoNext(spec) &&
+        (swipeDirection === "left" || swipeDirection === "up"))
     ) {
       touchSwipeLength = touchObject.swipeLength * edgeFriction;
       if (edgeDragged === false && onEdge) {
@@ -503,7 +508,7 @@ export const swipeEnd = (e, spec) => {
   }
   return state;
 };
-export const getNavigableIndexes = spec => {
+export const getNavigableIndexes = (spec) => {
   let max = spec.infinite ? spec.slideCount * 2 : spec.slideCount;
   let breakpoint = spec.infinite ? spec.slidesToShow * -1 : 0;
   let counter = spec.infinite ? spec.slidesToShow * -1 : 0;
@@ -531,7 +536,7 @@ export const checkNavigable = (spec, index) => {
   }
   return index;
 };
-export const getSlideCount = spec => {
+export const getSlideCount = (spec) => {
   const centerOffset = spec.centerMode
     ? spec.slideWidth * Math.floor(spec.slidesToShow / 2)
     : 0;
@@ -542,7 +547,7 @@ export const getSlideCount = spec => {
       (slickList.querySelectorAll &&
         slickList.querySelectorAll(".slick-slide")) ||
       [];
-    Array.from(slides).every(slide => {
+    Array.from(slides).every((slide) => {
       if (!spec.vertical) {
         if (
           slide.offsetLeft - centerOffset + getWidth(slide) / 2 >
@@ -582,7 +587,7 @@ export const checkSpecKeys = (spec, keysArray) =>
     ? null
     : console.error("Keys Missing:", spec);
 
-export const getTrackCSS = spec => {
+export const getTrackCSS = (spec) => {
   checkSpecKeys(spec, [
     "left",
     "variableWidth",
@@ -642,7 +647,7 @@ export const getTrackCSS = spec => {
 
   return style;
 };
-export const getTrackAnimateCSS = spec => {
+export const getTrackAnimateCSS = (spec) => {
   checkSpecKeys(spec, [
     "left",
     "variableWidth",
@@ -667,7 +672,7 @@ export const getTrackAnimateCSS = spec => {
   }
   return style;
 };
-export const getTrackLeft = spec => {
+export const getTrackLeft = (spec) => {
   if (spec.unslick) {
     return 0;
   }
@@ -773,7 +778,7 @@ export const getTrackLeft = spec => {
   return targetLeft;
 };
 
-export const getPreClones = spec => {
+export const getPreClones = (spec) => {
   if (spec.unslick || !spec.infinite) {
     return 0;
   }
@@ -783,18 +788,18 @@ export const getPreClones = spec => {
   return spec.slidesToShow + (spec.centerMode ? 1 : 0);
 };
 
-export const getPostClones = spec => {
+export const getPostClones = (spec) => {
   if (spec.unslick || !spec.infinite) {
     return 0;
   }
   return spec.slideCount;
 };
 
-export const getTotalSlides = spec =>
+export const getTotalSlides = (spec) =>
   spec.slideCount === 1
     ? 1
     : getPreClones(spec) + spec.slideCount + getPostClones(spec);
-export const siblingDirection = spec => {
+export const siblingDirection = (spec) => {
   if (spec.targetSlide > spec.currentSlide) {
     if (spec.targetSlide > spec.currentSlide + slidesOnRight(spec)) {
       return "left";
@@ -852,3 +857,14 @@ export const canUseDOM = () =>
     window.document &&
     window.document.createElement
   );
+
+export const validSettings = Object.keys(defaultProps);
+
+export function filterSettings(settings) {
+  return validSettings.reduce((acc, settingName) => {
+    if (settings.hasOwnProperty(settingName)) {
+      acc[settingName] = settings[settingName];
+    }
+    return acc;
+  }, {});
+}

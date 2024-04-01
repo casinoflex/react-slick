@@ -12,7 +12,6 @@ import {
   getButtons,
   getButtonsLength,
   getClonesCount,
-  getCurrentSlide,
   getSlidesCount
 } from "../../test-utils";
 import { GenericSliderComponent } from "../TestComponents";
@@ -28,12 +27,28 @@ function MultipleItems() {
   return <GenericSliderComponent slidesCount={9} settings={settings} />;
 }
 
+function SingleItem() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1
+  };
+  return <GenericSliderComponent slidesCount={1} settings={settings} />;
+}
+
 describe("Multiple Items with slidesToShow = slides count in infinite mode", function () {
   it("should have 9 actual slides and (9(pre) + 9(post)) clone slides", function () {
     //Todo: Need to fix extra clones
     const { container } = render(<MultipleItems />);
     expect(getSlidesCount(container)).toEqual(27);
     expect(getClonesCount(container)).toEqual(18);
+  });
+  // https://github.com/akiran/react-slick/issues/2359
+  it("should not have cloned slide", function () {
+    const { container } = render(<SingleItem />);
+    expect(getSlidesCount(container)).toEqual(1);
+    expect(getClonesCount(container)).toEqual(0);
   });
   it("should have 9 active slides", function () {
     const { container } = render(<MultipleItems />);

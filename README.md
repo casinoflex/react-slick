@@ -1,6 +1,29 @@
 ### @ant-design/react-slick
 
-[![Backers on Open Collective](https://opencollective.com/react-slick/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-slick/sponsors/badge.svg)](#sponsors)
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+[![build status][github-actions-image]][github-actions-url]
+[![Codecov][codecov-image]][codecov-url]
+[![bundle size][bundlephobia-image]][bundlephobia-url]
+
+[npm-image]: http://img.shields.io/npm/v/@ant-design/react-slick.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/@ant-design/react-slick
+[travis-image]: https://img.shields.io/travis/ant-design/react-slick/master?style=flat-square
+[travis-url]: https://travis-ci.com/ant-design/react-slick
+[github-actions-image]: https://github.com/ant-design/react-slick/workflows/CI/badge.svg
+[github-actions-url]: https://github.com/ant-design/react-slick/actions
+[codecov-image]: https://img.shields.io/codecov/c/github/ant-design/react-slick/master.svg?style=flat-square
+[codecov-url]: https://app.codecov.io/gh/ant-design/react-slick
+[david-url]: https://david-dm.org/ant-design/react-slick
+[david-image]: https://david-dm.org/ant-design/react-slick/status.svg?style=flat-square
+[david-dev-url]: https://david-dm.org/ant-design/react-slick?type=dev
+[david-dev-image]: https://david-dm.org/ant-design/react-slick/dev-status.svg?style=flat-square
+[download-image]: https://img.shields.io/npm/dm/@ant-design/react-slick.svg?style=flat-square
+[download-url]: https://npmjs.org/package/@ant-design/react-slick
+[bundlephobia-url]: https://bundlephobia.com/package/@ant-design/react-slick
+[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/@ant-design/react-slick
+[dumi-url]: https://github.com/umijs/dumi
+[dumi-image]: https://img.shields.io/badge/docs%20by-dumi-blue?style=flat-square
 
 ##### Carousel component built with React. It is a react port of [slick carousel](http://kenwheeler.github.io/slick/)
 

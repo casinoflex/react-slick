@@ -2,7 +2,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Slider from "../src/slider";
+import Slider from "../src/components/Slider";
 import MultipleItems from "../examples/MultipleItems";
 function SimpleSlider() {
   const settings = {

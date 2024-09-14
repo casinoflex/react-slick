@@ -7,8 +7,8 @@ sinon.stub(console, "error");
 import { render } from "@testing-library/react";
 import React from "react";
 import sinon from "sinon";
-
-import { NextArrow, PrevArrow } from "../src/arrows";
+import PrevArrow from "../src/components/PrevArrow";
+import NextArrow from "../src/components/NextArrow";
 
 function CustomArrow(props) {
   return (

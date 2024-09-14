@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import assign from "object-assign";
-import { getRequiredLazySlides } from "../src/utils/innerSliderUtils";
+import { getRequiredLazySlides } from "../src/utils/getRequiredLazySlides";
 import {
   createInnerSliderWrapper,
   clickNext,

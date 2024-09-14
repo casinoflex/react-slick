@@ -2,11 +2,11 @@ import React from "react";
 import $ from "jquery";
 import assign from "object-assign";
 import { render } from "@testing-library/react";
-import Slider from "../src/slider";
-import { InnerSlider } from "../src/inner-slider";
-import defaultProps from "../src/default-props";
+import Slider from "../src/components/Slider";
+import { InnerSlider } from "../src/components/InnerSlider";
+import defaultProps from "../src/constants/default-props";
 import * as slickCarousel from "slick-carousel"; // defining slick in global environment
-import { getTrackLeft } from "../src/utils/innerSliderUtils";
+import { getTrackLeft } from "../src/utils/getTrackLeft";
 import {
   getActiveSlides,
   getActiveSlidesCount,

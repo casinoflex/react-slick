@@ -1,4 +1,4 @@
-import { filterSettings } from "../../src/utils/filterSettings";
+import filterSettings from "../../src/utils/filterSettings";
 
 describe("filterSettings", () => {
   it("returns empty object if there are no valid settings", () => {

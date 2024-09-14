@@ -58,11 +58,11 @@ gulp.task("dist-min", function (cb) {
 
   minConfig.plugins = minConfig.plugins.concat(
     new TerserPlugin({
-      cache: true,
       parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        warnings: false
+      minify: TerserPlugin.uglifyJsMinify,
+      terserOptions: {
+        compress: true,
+        sourceMap: true
       }
     })
   );

@@ -1,6 +1,6 @@
 {
   "name": "@casinoflex/react-slick",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": " React port of slick carousel",
   "main": "./lib",
   "module": "./es",
@@ -13,9 +13,9 @@
   ],
   "scripts": {
     "build-dev": "gulp clean && gulp copy && webpack",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider npm run lib && NODE_OPTIONS=--openssl-legacy-provider npm run es && NODE_OPTIONS=--openssl-legacy-provider gulp dist",
     "es": "ESMODULES=true babel ./src --out-dir ./es",
     "lib": "babel ./src --out-dir ./lib",
-    "compile": "NODE_OPTIONS=--openssl-legacy-provider npm run lib && NODE_OPTIONS=--openssl-legacy-provider npm run es && NODE_OPTIONS=--openssl-legacy-provider gulp dist",
     "prepublishOnly": "npm run build && np --no-cleanup --no-publish",
     "lint": "eslint src",
     "gen": "node docs/scripts/generateExampleConfigs.js && node docs/scripts/generateExamples.js && xdg-open docs/jquery.html",
@@ -28,7 +28,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/casinoflex/react-slick"
+    "url": "git+https://github.com/casinoflex/react-slick.git"
   },
   "keywords": [
     "slick",
@@ -123,5 +123,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
   }
 }

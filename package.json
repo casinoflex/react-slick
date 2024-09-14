@@ -1,5 +1,5 @@
 {
-  "name": "@ant-design/react-slick",
+  "name": "@casinoflex/react-slick",
   "version": "1.1.2",
   "description": " React port of slick carousel",
   "main": "./lib",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ant-design/react-slick"
+    "url": "https://github.com/casinoflex/react-slick"
   },
   "keywords": [
     "slick",
@@ -108,7 +108,7 @@
       "git add"
     ]
   },
-  "npmName": "@ant-design/react-slick",
+  "npmName": "@casinoflex/react-slick",
   "npmFileMap": [
     {
       "basePath": "/dist/",
@@ -118,7 +118,7 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/ant-design/react-slick/issues"
+    "url": "https://github.com/casinoflex/react-slick/issues"
   },
   "homepage": "https://react-slick.neostack.com",
   "collective": {

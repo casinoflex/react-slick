@@ -1,5 +1,5 @@
 import assign from "object-assign";
-import { getRequiredLazySlides } from "../src/utils/innerSliderUtils";
+import { getRequiredLazySlides } from "../src/utils/getRequiredLazySlides";
 import {
   createInnerSliderWrapper,
   clickNext,
@@ -8,7 +8,7 @@ import {
   actualTrackLeft,
   testTrackLeft
 } from "./testUtils";
-import { getTrackLeft } from "../src/utils/innerSliderUtils";
+import { getTrackLeft } from "../src/utils/getTrackLeft";
 
 const testSettings = (settings) => {
   let slider = createInnerSliderWrapper(settings);

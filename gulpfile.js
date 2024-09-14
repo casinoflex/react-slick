@@ -3,13 +3,9 @@
 var gulp = require("gulp");
 var del = require("del");
 var webpack = require("webpack");
-var WebpackDevServer = require("webpack-dev-server");
 var assign = require("object-assign");
-var opn = require("opn");
 
-var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-
-const DEV_PORT = process.env.DEV_PORT || 8080;
+const TerserPlugin = require("terser-webpack-plugin");
 
 gulp.task("clean", function () {
   return del(["./build/*"]);
@@ -40,42 +36,6 @@ gulp.task(
   })
 );
 
-gulp.task(
-  "server",
-  gulp.series(["watch", "copy"], function () {
-    console.log("Start");
-    var myConfig = require("./webpack.config");
-    if (process.env.SINGLE_DEMO) {
-      myConfig.entry = {
-        "docs.js": "./docs/single-demo.js"
-      };
-    }
-    myConfig.plugins = myConfig.plugins.concat(
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify("dev_docs")
-        }
-      })
-    );
-
-    new WebpackDevServer(webpack(myConfig), {
-      contentBase: "./build",
-      hot: true,
-      stats: {
-        colors: true
-      }
-    }).listen(DEV_PORT, "0.0.0.0", function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        const server_url = `http://0.0.0.0:${DEV_PORT}`;
-        console.log(`> Dev Server started at ${server_url}`);
-        opn(server_url);
-      }
-    });
-  })
-);
-
 // gulp tasks for building dist files
 gulp.task("dist-clean", function () {
   return del(["./dist/*"]);
@@ -95,8 +55,9 @@ gulp.task("dist-unmin", function (cb) {
 gulp.task("dist-min", function (cb) {
   var minConfig = assign({}, distConfig);
   minConfig.output.filename = "react-slick.min.js";
+
   minConfig.plugins = minConfig.plugins.concat(
-    new UglifyJsPlugin({
+    new TerserPlugin({
       cache: true,
       parallel: true,
       sourceMap: true,
@@ -117,5 +78,3 @@ gulp.task(
     done();
   })
 );
-
-gulp.task("default", gulp.series(["watch", "server"]));

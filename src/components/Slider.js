@@ -76,7 +76,7 @@ export default class Slider extends React.Component {
   slickPlay = () => this.innerSlider.autoPlay("play");
 
   currentBrakepointSettings() {
-    if (!this.state.breakpoint) return { slidesToShow: 0 };
+    if (!this.state.breakpoint) return {};
 
     return this.props.responsive.filter(
       ({ breakpoint }) => breakpoint === this.state.breakpoint

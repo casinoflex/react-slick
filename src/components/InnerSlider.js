@@ -194,6 +194,7 @@ export default class InnerSlider extends React.Component {
             currentSlide: this.state.currentSlide
           });
         }
+
         if (
           prevProps.autoplay !== this.props.autoplay ||
           prevProps.autoplaySpeed !== this.props.autoplaySpeed
@@ -228,28 +229,37 @@ export default class InnerSlider extends React.Component {
     };
 
     this.updateState(spec, setTrackStyle, () => {
-      if (this.props.autoplay) this.autoPlay("update");
-      else this.pause("paused");
+      this.props.autoplay ? this.autoPlay("update") : this.pause("paused");
     });
+
+    this.props.onResize && this.props.onResize(spec);
 
     // animating state should be cleared while resizing, otherwise autoplay stops working
     this.setState({ animating: false });
     clearTimeout(this.animationEndCallback);
     delete this.animationEndCallback;
   };
+
   updateState = (spec, setTrackStyle, callback) => {
-    let updatedState = initializedState(spec);
-    spec = { ...spec, ...updatedState, slideIndex: updatedState.currentSlide };
-    let targetLeft = getTrackLeft(spec);
-    spec = { ...spec, left: targetLeft };
-    let trackStyle = getTrackCSS(spec);
-    if (
-      setTrackStyle ||
+    const updatedState = initializedState(spec);
+    const childrenChanged =
       React.Children.count(this.props.children) !==
-        React.Children.count(spec.children)
-    ) {
-      updatedState["trackStyle"] = trackStyle;
+      React.Children.count(spec.children);
+
+    spec = { ...spec, ...updatedState, slideIndex: updatedState.currentSlide };
+    spec = { ...spec, left: getTrackLeft(spec) };
+
+    if (setTrackStyle || childrenChanged) {
+      updatedState["trackStyle"] = getTrackCSS(spec);
     }
+
+    if (spec.slideCount - updatedState.currentSlide < spec.slidesToShow) {
+      updatedState.currentSlide = Math.max(
+        spec.slideCount - spec.slidesToShow,
+        0
+      );
+    }
+
     this.setState(updatedState, callback);
   };
 

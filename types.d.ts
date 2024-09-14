@@ -56,6 +56,7 @@ export interface Settings {
     onInit?(): void;
     onLazyLoad?(slidesToLoad: number[]): void;
     onReInit?(): void;
+    onResize?: Settings;
     onSwipe?(swipeDirection: SwipeDirection): void;
     pauseOnDotsHover?: boolean | undefined;
     pauseOnFocus?: boolean | undefined;

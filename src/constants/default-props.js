@@ -29,6 +29,7 @@ let defaultProps = {
   onInit: null,
   onLazyLoadError: null,
   onReInit: null,
+  onResize: null,
   pauseOnDotsHover: false,
   pauseOnFocus: false,
   pauseOnHover: true,

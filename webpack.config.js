@@ -22,7 +22,9 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        loader: "html!markdown"
+        use: {
+          loader: "html!markdown"
+        }
       }
     ]
   },
@@ -32,7 +34,7 @@ module.exports = {
       "@casinoflex/react-slick": path.resolve(__dirname, "src/index.js")
     }
   },
-  plugins: [new webpack.IgnorePlugin(/vertx/)],
+  plugins: [new webpack.IgnorePlugin({ resourceRegExp: /vertx/ })],
   devServer: {
     contentBase: path.join(__dirname, "./build"),
     port: 8080,
